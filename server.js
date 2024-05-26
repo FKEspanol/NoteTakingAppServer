@@ -7,9 +7,17 @@ const PORT = process.env.PORT;
 const notesData = require("./data/notes.json");
 const dbPath = path.join(__dirname, "data", "notes.json");
 
+const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*" /* @dev First, read about security */,
+    "Access-Control-Allow-Methods": "OPTIONS, POST, GET, PUT, DELETE",
+    "Access-Control-Max-Age": 2592000, // 30 days
+    /** add other headers as per requirement */
+};
+
 // Logger middleware
 const logger = (req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
+    // console.log(`${req.method} ${req.url}`);
     next();
 };
 
@@ -20,20 +28,21 @@ const jsonMiddleware = (req, res, next) => {
 };
 
 const getNotesHandler = (req, res) => {
-    res.write(JSON.stringify(notesData));
-    res.statusCode = 200;
-    res.end();
+    const notes = notesData;
+    res.writeHead(200, headers);
+    res.end(JSON.stringify(notesData));
 };
 
 const getOneNoteHandler = (req, res) => {
     const id = req.url.split("/")[3];
     const note = notesData.find((note) => note.id === id);
-    console.log(note);
+
     if (note) {
-        res.write(JSON.stringify(note));
+        res.writeHead(200, headers);
+        res.end(JSON.stringify(note));
     } else {
-        res.write(JSON.stringify({ message: "User not found" }));
-        res.statusCode = 404;
+        res.writeHead(404, headers);
+        res.end(JSON.stringify({ message: "User not found" }));
     }
 
     res.end();
@@ -55,17 +64,18 @@ const postNoteHandler = (req, res) => {
             const updatedNotes = JSON.stringify([...notesData, newNote]);
 
             await fs.writeFile(dbPath, updatedNotes, "utf8");
-            console.log("Data appended successfully!");
-            res.statusCode = 201;
-            res.write(JSON.stringify(newNote));
-            res.end();
+
+            res.writeHead(201, headers);
+            res.end(JSON.stringify({ message: "note successfully added" }));
         } catch (error) {
+            res.writeHead(500, headers);
+            res.end(JSON.stringify({ message: "Server Error" }));
             throw new Error(error);
         }
     });
 };
 
-const updateNoteHandler = (req, res) => {
+const editNoteHandler = (req, res) => {
     const id = req.url.split("/")[3];
     let body = "";
     // Listen for data
@@ -87,33 +97,34 @@ const updateNoteHandler = (req, res) => {
             const updatedNotes = JSON.stringify(notes, null, 2);
 
             await fs.writeFile(dbPath, updatedNotes, "utf8");
-            res.statusCode = 201;
-            res.write(JSON.stringify(notes[indexNum]));
-            res.end();
+            res.writeHead(201, headers);
+            res.end(JSON.stringify({ message: "note successfully updated" }));
         } catch (error) {
+            res.writeHead(500, headers);
+            res.end(JSON.stringify({ message: "Server Error" }));
             throw new Error(error);
         }
     });
 };
 
 const deleteNoteHandler = async (req, res) => {
+    console.log("delete api hit");
     try {
         const id = req.url.split("/")[3];
         const notes = notesData;
 
-        const updatedNotes = notes.map((note) => {
-            if (note.id != id) return note;
-        });
-        console.log(updatedNotes);
+        const updatedNotes = notes.filter((note) => note.id != id);
+
         await fs.writeFile(
             dbPath,
             JSON.stringify(updatedNotes, null, 2),
             "utf8"
         );
-        res.statusCode = 201;
-        res.write(JSON.stringify(updatedNotes));
-        res.end();
+        res.writeHead(200, headers);
+        res.end(JSON.stringify({ message: "note successfully deleted" }));
     } catch (error) {
+        res.writeHead(500, headers);
+        res.end(JSON.stringify({ message: "Server Error" }));
         throw new Error(error);
     }
 };
@@ -134,11 +145,11 @@ const server = http.createServer((req, res) => {
                 postNoteHandler(req, res);
             } else if (
                 req.url.match(
-                    /^\/notes\/updateNote\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+                    /^\/notes\/editNote\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
                 ) &&
                 req.method === "PUT"
             ) {
-                updateNoteHandler(req, res);
+                editNoteHandler(req, res);
             } else if (
                 req.url.match(
                     /^\/notes\/deleteNote\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/

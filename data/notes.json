@@ -1,50 +1,50 @@
 [
-    {
-        "id": "f73612fc-87bb-41fc-a860-7567cf85d662",
-        "category": "coding",
-        "title": "Linux Tips",
-        "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
-    },
-    {
-        "id": "8c2f2aee-fe5e-4983-9645-542c2d3eede2",
-        "category": "coding",
-        "title": "Php Basics",
-        "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
-    },
-    {
-        "id": "160cb302-91ca-4c4b-acb5-4dec2092e944",
-        "category": "random",
-        "title": "Debian tips",
-        "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
-    },
-    {
-        "id": "2c0f6988-4176-4585-bf3e-913f7141c7cb",
-        "category": "random",
-        "title": "Powershell for Begginers",
-        "noteBody": "Learning powershell for begginers"
-    },
-    {
-        "id": "2af5dd87-38c4-40f0-9209-46a48b932a38",
-        "category": "random",
-        "title": "Basics of Bash Scripting",
-        "noteBody": "This is the introduction into bash scripting in Linux environment"
-    },
-    {
-        "id": "1d82d389-d258-4eb0-b413-b336740ac6a6",
-        "category": "random",
-        "title": "Express JS with MongoDB",
-        "noteBody": "This is a lessons for express js with mongodb"
-    },
-    {
-        "id": "6e173aea-c584-4e70-9264-a0fe60a1dec4",
-        "category": "random",
-        "title": "Python Basics",
-        "noteBody": "Basics of python programming language"
-    },
-    {
-        "id": "21ba3d6c-d350-4a52-a73e-b706ea12f5f3",
-        "category": "Coding",
-        "title": "Nodejs using http module",
-        "noteBody": "Basic of nodejs with http module"
-    }
+  {
+    "id": "f73612fc-87bb-41fc-a860-7567cf85d662",
+    "category": "coding",
+    "title": "Linux Tips",
+    "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
+  },
+  {
+    "id": "8c2f2aee-fe5e-4983-9645-542c2d3eede2",
+    "category": "coding",
+    "title": "Php Basics",
+    "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
+  },
+  {
+    "id": "2c0f6988-4176-4585-bf3e-913f7141c7cb",
+    "category": "random",
+    "title": "Powershell for Begginers",
+    "noteBody": "Learning powershell for begginers"
+  },
+  {
+    "id": "2af5dd87-38c4-40f0-9209-46a48b932a38",
+    "category": "random",
+    "title": "Basics of Bash Scripting",
+    "noteBody": "This is the introduction into bash scripting in Linux environment"
+  },
+  {
+    "id": "1d82d389-d258-4eb0-b413-b336740ac6a6",
+    "category": "random",
+    "title": "Express JS with MongoDB",
+    "noteBody": "This is a lessons for express js with mongodb"
+  },
+  {
+    "id": "21ba3d6c-d350-4a52-a73e-b706ea12f5f3",
+    "category": "Coding",
+    "title": "Nodejs using http module",
+    "noteBody": "Basic of nodejs with http module"
+  },
+  {
+    "id": "160cb302-91ca-4c4b-acb5-4dec2092e944",
+    "category": "random",
+    "title": "Debian tips",
+    "noteBody": "The quick brown fox jump over the lazy dog near the side of the river bank"
+  },
+  {
+    "id": "92817139-5815-450f-8326-c3ae85993433",
+    "category": "random",
+    "title": "My accounts and passwords",
+    "noteBody": "list of my accounts"
+  }
 ]
