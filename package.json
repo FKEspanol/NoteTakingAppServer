@@ -1,0 +1,17 @@
+{
+    "name": "notetakingappserver",
+    "version": "1.0.0",
+    "description": "Backend server for Note taking app frontend with react js",
+    "main": "server.js",
+    "scripts": {
+        "server": "nodemon --env-file=.env server.js"
+    },
+    "author": "Karlo Espanol",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^3.1.1"
+    },
+    "dependencies": {
+        "uuid": "^9.0.1"
+    }
+}
